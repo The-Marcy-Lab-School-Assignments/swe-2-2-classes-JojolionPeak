@@ -47,6 +47,7 @@ class Vehicle {
 }
 
 class PasswordManager {
+
 /**
  * PASSWORD MANAGER CONSTRUCTOR
  * create a private password(str)
@@ -87,6 +88,7 @@ class PasswordManager {
 }
 
 class TodoList {
+
   /**
    * private array of items
    * TO DO LIST CONSTRUCTOR
@@ -124,6 +126,83 @@ class TodoList {
 
 class BankAccount {
 
+  /**
+   * BANK ACCOUNT() CONSTRUCTOR
+   * firstName param
+   * lastName param
+   * balance param
+   * DEPOSIT() METHOD
+   * adds amount to balance
+   * returns a message
+   * WITHDRAW() METHOD
+   * return message if not enough
+   * subtracts inputted amount from balance
+   * returns a message
+   * GET TOTAL HOLDINGS() STATIC METHOD
+   * return the total balance among all BankAccount instances
+   */
+
+  #balance = 0;
+  static #totalBalance = 0;
+
+  constructor(firstName, lastName, balance) {
+
+    this.firstName = firstName;
+    this.lastName = lastName;
+    if (!balance) {
+      this.#balance = 0
+    } else {
+      this.#balance = balance
+    }
+    BankAccount.#totalBalance += balance;
+  }
+
+  showBalance() {
+    if (this.#balance % 2 !== 0) {
+      return `Your balance is $${this.#balance}`
+    } else {
+      return `Your balance is $${this.#balance}.00`
+    }
+  }
+
+  deposit(amount) {
+    if (Number.isNaN(amount)) {
+      return
+    }
+
+    this.#balance += amount
+    BankAccount.#totalBalance += amount
+    if (this.#balance % 1 !== 0) {
+      return `Your balance is $${this.#balance}`
+    } else {
+      return `Your balance is $${this.#balance}.00`
+    }
+  }
+
+  withdraw(amount) {
+    if (Number.isNaN(amount)) {
+      return
+    }
+
+    if (amount > this.#balance) {
+      return `You do not have enough funds.`
+    }
+
+    this.#balance -= amount;
+    BankAccount.#totalBalance -= amount;
+
+
+    if(this.#balance % 2 !== 0) {
+      return `Your balance is $${this.#balance}.`
+    } else {
+      return `Your balance is $${this.#balance}.00.`
+    }
+
+  }
+
+  static getTotalHoldings()  {
+    return BankAccount.#totalBalance
+  }
 }
 
 module.exports = {
