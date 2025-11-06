@@ -116,7 +116,12 @@ class TodoList {
   }
 
   removeItem(description) {
-    return this.#items.includes(description) ? this.#items.splice(this.#items.indexOf(description), 1) : null
+    if (this.#items.includes(description)) {
+      this.#items.splice(this.#items.indexOf(description), 1);
+      return description
+    } else {
+      return null
+    }
   }
 
   getItems() {
@@ -149,12 +154,14 @@ class BankAccount {
 
     this.firstName = firstName;
     this.lastName = lastName;
+
     if (!balance) {
       this.#balance = 0
     } else {
       this.#balance = balance
     }
-    BankAccount.#totalBalance += balance;
+
+    BankAccount.#totalBalance += this.#balance;
   }
 
   showBalance() {
@@ -172,6 +179,7 @@ class BankAccount {
 
     this.#balance += amount
     BankAccount.#totalBalance += amount
+
     if (this.#balance % 1 !== 0) {
       return `Your balance is $${this.#balance}`
     } else {
@@ -183,14 +191,12 @@ class BankAccount {
     if (Number.isNaN(amount)) {
       return
     }
-
     if (amount > this.#balance) {
       return `You do not have enough funds.`
     }
 
     this.#balance -= amount;
     BankAccount.#totalBalance -= amount;
-
 
     if(this.#balance % 2 !== 0) {
       return `Your balance is $${this.#balance}.`
