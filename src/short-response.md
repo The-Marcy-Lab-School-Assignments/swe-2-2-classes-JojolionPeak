@@ -17,8 +17,7 @@ How would you explain to a budding developer what the drawbacks of using factory
 
 ## Response 1
 
-
----
+Factory functions' main drawback is that they are inefficient with their memory. When an object is created through a factory function, it might have the smae methods as another object created through the smae function. However, the methods, though identical, will be separate data points which is wasteful. With classes, we can set methods and properties for the class itself, that will be shared among all instances of the class.
 
 ## Prompt 2
 
@@ -26,8 +25,7 @@ Explain what factors you should consider when deciding to make a property/method
 
 ## Response 2
 
-
----
+You should consider whether or not you want your property or method to be accessible from outside the class. If you want your data to be public and accessible from outside of the instance, then do not make it private. But if you want to maintain the integrity of the data, make it private. For example, say I want to make an instance of a Person class object. That instance will have an address line that should be
 
 ## Prompt 3
 
@@ -35,7 +33,7 @@ Explain what factors you should consider when deciding to make a property/method
 
 ## Response 3
 
----
+If you wanted to decide on whether or not to make a property or method static, you should ask yourself if the property or method is something that will be shared between all instance of a class. For example, if you have a student class, there should be a static classes property that holds all of the classes that a particular student is currently taking, because if the student isn't taking any classes then they are not a student.
 
 ## Prompt 4
 
@@ -56,3 +54,6 @@ class Vault {
 Identify what the mistake is, explain why it is a problem, and suggest a way to fix it.
 
 ## Response 4
+
+
+The mistake in the block of code above is the programmer is returning the original secrets array. To prevent showing the original array, it's best to copy the array and return the copied array instead.
